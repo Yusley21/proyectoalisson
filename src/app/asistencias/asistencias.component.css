@@ -1,0 +1,31 @@
+/* Estilos para el contenedor principal */
+div {
+    max-width: 600px; /* Ancho máximo del contenedor */
+    margin: 0 auto; /* Centrar el contenedor en la página */
+    padding: 20px; /* Espaciado interno del contenedor */
+    background-color: #f8f9fa; /* Color de fondo */
+    border-radius: 8px; /* Borde redondeado */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Sombra suave */
+  }
+  
+  /* Estilos para el encabezado h2 */
+  h2 {
+    color: #007bff; /* Color del texto */
+  }
+  
+  /* Estilos para los párrafos con *ngIf */
+  p {
+    margin-top: 10px; /* Espaciado superior */
+    font-weight: bold; /* Texto en negrita */
+  }
+  
+  /* Estilos específicos para los párrafos con *ngIf="docenteNombre" */
+  p.ng-star-inserted:first-child {
+    color: #28a745; /* Color del texto para el docente */
+  }
+  
+  /* Estilos específicos para los párrafos con *ngIf="asignaturaNombre" */
+  p.ng-star-inserted:last-child {
+    color: #dc3545; /* Color del texto para la asignatura */
+  }
+  

@@ -1,0 +1,26 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="text-center">
+                    <h1>Inicio de Sesion 
+                        <h6>Por favor ingrese correo electrónico y contraseña
+                        </h6>
+                    </h1>
+                </div>
+                <form  [formGroup]= "loginForm" (ngSubmit)= "login()">
+                    <div class="mb-3">
+                        <label for="exampleInputEmail1" class="form-label">Correo Electronico</label>
+                        <input formControlName="email" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                      </div>
+                      <div class="mb-3">
+                        <label for="exampleInputPassword1" class="form-label">contraseña</label>
+                        <input formControlName="password" type="password" class="form-control" id="exampleInputPassword1">
+                      </div>
+                      <button type="submit" class="btn btn-primary">Inicio de Sesion</button>
+                </form>
+                <a style="color: #fff; margin: top 10px;" routerLink="/signup">¿Nuevo Usuario? Haga clic para registrarse</a>
+            </div>
+        </div>
+    </div>
+</div>

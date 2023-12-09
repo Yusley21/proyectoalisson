@@ -1,0 +1,44 @@
+{
+  "posts": [
+    {
+      "id": 2,
+      "docente": "Fabricio",
+      "cedula": "1352656985",
+      "codigo": "6662",
+      "asignatura": "Mate",
+      "curso": "8899",
+      "horario": "10 a 12",
+      "aula": "2665"
+    },
+    {
+      "id": 3,
+      "docente": "Mario Mero",
+      "cedula": "1351787914",
+      "codigo": "520",
+      "asignatura": "Fisica",
+      "curso": "856",
+      "horario": "8 a 10",
+      "aula": "563"
+    }
+  ],
+  "signupUsers": [
+    {
+      "fullname": "Oswaldo Iñiguez",
+      "email": "alison@gmail.com",
+      "password": "123456",
+      "mobile": 992563625,
+      "id": 1
+    }
+  ],
+  "studu": [
+    {
+      "id": 1,
+      "estudiantes": "Armando Cevallos",
+      "cedula": "135268888",
+      "correo": "Armando1@gmail.com"
+    }
+  ],
+  "profile": {
+    "name": "typicode"
+  }
+}

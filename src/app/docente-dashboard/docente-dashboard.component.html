@@ -1,0 +1,97 @@
+<nav class="navbar navbar-ligth bg-primary">
+    <div class="container-fluid">
+        <h1 style="color: rgb(40, 122, 194);">DOCENTE</h1>
+        <div class="d-flex">
+            <button (click)= "clickAddDocente()" type= "button" data-bs-toggle="modal" data-bs-target="#exampleModal" class="btn btn-success">Agregar Docente</button>
+            <button routerLink="/login" class="btn btn-danger mx-2">Cerrar Sesion</button>
+        </div>
+    </div>
+</nav>
+
+<table class="table mt-3">
+    <thead>
+        <tr>
+            <th scope="col">iD docente</th>
+            <th scope="col">Nombre del docente</th>
+            <th scope="col">Número de identificación</th>
+            <th scope="col">Número de empleado o código asignado</th>
+            <th scope="col">Nombre del curso o asignatura</th>
+            <th scope="col">Código del curso</th>
+            <th scope="col">Horario de clases</th>
+            <th scope="col">Aula o salón asignado</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor= "let row of docenteData">
+            <td>{{row.id}}</td>
+            <td>{{row.docente}}</td>
+            <td>{{row.cedula}}</td>
+            <td>{{row.codigo}}</td>
+            <td>{{row.asignatura}}</td>
+            <td>{{row.curso}}</td>
+            <td>{{row.horario}}</td>
+            <td>{{row.aula}}</td>
+            <td>
+                <button (click)= "onEdit(row)" style="color: aliceblue;" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" class="btn btn-info">Editar</button>
+                <button (click)= "deleteDocente(row)" class="btn btn-danger mx-3">Eliminar</button>
+                <button (click)= "onEdite(row)" routerLink="/asistencias" class="btn btn-success">Asistencias</button>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Información del Docente</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <form [formGroup]= "formValue">
+                <div class="mb-3">
+                  <label for="exampleInputEmail1" class="form-label">Nombre del Docente</label>
+                  <input type="text" formControlName="docente" class="form-control" id="exampleInputEmail1" >
+                </div>
+
+                <div class="mb-3">
+                  <label for="exampleInputPassword1" class="form-label">Número de identificación</label>
+                  <input type="text" formControlName="cedula" class="form-control" id="exampleInputPassword1">
+                </div>
+                
+                <div class="mb-3">
+                    <label for="exampleInputPassword1" class="form-label">Número de empleado o código asignado</label>
+                    <input type="text" formControlName="codigo" class="form-control"  id="exampleInputPassword1">
+                  </div>
+
+                  <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">Nombre del curso o asignatura</label>
+                    <input type="text" formControlName="asignatura" class="form-control" id="exampleInputEmail1" >
+                  </div>
+
+                  <div class="mb-3">
+                    <label for="exampleInputPassword1" class="form-label">Código del curso</label>
+                    <input type="text" formControlName="curso" class="form-control" id="exampleInputPassword1">
+                  </div>
+
+                  <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">Horario de clases</label>
+                    <input type="text" formControlName="horario" class="form-control" id="exampleInputEmail1" >
+                  </div>
+
+                  <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">Aula o salón asignado</label>
+                    <input type="text" formControlName="aula" class="form-control" id="exampleInputEmail1" >
+                  </div>
+              </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" id="cancel" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+          <button type="button" *ngIf= "showAdd" (click)= "postDocenteDetails()" class="btn btn-primary">Agregar</button>
+          <button type="button" *ngIf= "showUpdate" (click)= "updateDocenteDetails()" class="btn btn-primary">Actualizar</button>
+        </div>
+        
+      </div>
+    </div>
+  </div>
