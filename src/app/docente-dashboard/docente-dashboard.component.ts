@@ -10,121 +10,147 @@ import { Router } from '@angular/router';  // Importar Router
   styleUrls: ['./docente-dashboard.component.css']
 })
 export class DocenteDashboardComponent implements OnInit {
+
   formValue!: FormGroup;
-  docenteModelObj: DocenteModel = new DocenteModel();
+ docenteModelObj: DocenteModel = new DocenteModel();
   docenteData!: any;
   showAdd!: boolean;
   showUpdate!: boolean;
 
-  constructor(private formbuilder: FormBuilder, private api: ApiService, private router: Router) {}
-
+  constructor(
+    private formbuilder: FormBuilder,
+    private api : ApiService,
+    private router: Router)
+    {}
+  
   ngOnInit(): void {
     this.formValue = this.formbuilder.group({
-      docente: [''],
-      cedula: [''],
-      codigo: [''],
-      asignatura: [''],
-      curso: [''],
-      horario: [''],
-      aula: ['']
+    nombre: [''],
+    foto: [null],
+    carrera: [''],
+    universidad: [''],
+    anoGraduacion: [''],
+    empleoActual: [''],
+    tiempoSinTrabajo: ['']
+  });
+  this.getAllDocente();
+
+}
+guardarDatos() {
+  // ... Código para guardar datos utilizando TuServicioDeDatos
+
+  // Supongamos que has guardado los datos con éxito
+  // Ahora, navega a la página de la galería
+  this.router.navigate(['/galeria']);
+}
+
+onFileSelected(event: any) {
+  const selectedFile: File = event.target.files[0];
+
+  if (selectedFile) {
+    this.formValue.patchValue({
+      foto: selectedFile
     });
-    this.getAllDocente();
-  }
+    this.formValue.get('foto')?.updateValueAndValidity(); // Actualizar la validez del campo
 
-  clickAddDocente() {
-    this.formValue.reset();
-    this.showAdd = true;
-    this.showUpdate = false;
-  }
-
-  postDocenteDetails() {
-    this.docenteModelObj.docente = this.formValue.value.docente;
-    this.docenteModelObj.cedula = this.formValue.value.cedula;
-    this.docenteModelObj.codigo = this.formValue.value.codigo;
-    this.docenteModelObj.asignatura = this.formValue.value.asignatura;
-    this.docenteModelObj.curso = this.formValue.value.curso;
-    this.docenteModelObj.horario = this.formValue.value.horario;
-    this.docenteModelObj.aula = this.formValue.value.aula;
-
-    this.api.postDocente(this.docenteModelObj)
-      .subscribe(res => {
-        console.log(res);
-        alert("Docente agregado correctamente");
-        let ref = document.getElementById('cancel');
-        ref?.click();
-        this.formValue.reset();
-        this.getAllDocente();
-      },
-      err => {
-        alert("Intente de nuevo");
+    // Crear una vista previa de la imagen
+    const reader = new FileReader();
+    reader.onload = () => {
+      this.formValue.patchValue({
+        foto: reader.result
       });
+    };
+    reader.readAsDataURL(selectedFile);
   }
-
-  getAllDocente() {
-    this.api.getDocente()
-      .subscribe(res => {
-        this.docenteData = res;
-      });
-  }
-
-  deleteDocente(row: any) {
-    this.api.deleteDocente(row.id)
-      .subscribe(res => {
-        alert("Docente Eliminado");
-        this.getAllDocente();
-      });
-  }
-
-  onEdit(row: any) {
-    this.showAdd = false;
-    this.showUpdate = true;
-    this.docenteModelObj.id = row.id;
-    this.formValue.controls['docente'].setValue(row.docente);
-    this.formValue.controls['cedula'].setValue(row.cedula);
-    this.formValue.controls['codigo'].setValue(row.codigo);
-    this.formValue.controls['asignatura'].setValue(row.asignatura);
-    this.formValue.controls['curso'].setValue(row.curso);
-    this.formValue.controls['horario'].setValue(row.horario);
-    this.formValue.controls['aula'].setValue(row.aula); 
-  }
+}
 
 
-  onEdite(row: any) {
-    this.showAdd = false;
-    this.showUpdate = true;
-    this.docenteModelObj.id = row.id;
-    this.formValue.controls['docente'].setValue(row.docente);
-    this.formValue.controls['cedula'].setValue(row.cedula);
-    this.formValue.controls['codigo'].setValue(row.codigo);
-    this.formValue.controls['asignatura'].setValue(row.asignatura);
-    this.formValue.controls['curso'].setValue(row.curso);
-    this.formValue.controls['horario'].setValue(row.horario);
-    this.formValue.controls['aula'].setValue(row.aula);
+clickAddDocente() {
+  this.formValue.reset();
+  this.showAdd = true;
+  this.showUpdate = false;
+}
+postDocenteDetails() {
+  this.docenteModelObj.nombre = this.formValue.value.nombre;
+  this.docenteModelObj.foto = this.formValue.value.foto;
+  this.docenteModelObj.carrera = this.formValue.value.carrera;
+  this.docenteModelObj.universidad = this.formValue.value.universidad;
+  this.docenteModelObj.anoGraduacion = this.formValue.value.anoGraduacion;
+  this.docenteModelObj.empleoActual = this.formValue.value.empleoActual;
+  this.docenteModelObj.tiempoSinTrabajo = this.formValue.value.tiempoSinTrabajo;
+
+  this.api.postDocente(this.docenteModelObj)
+    .subscribe(res => {
+      console.log(res);
+      alert("Estudiante agregado correctamente");
+      let ref = document.getElementById('cancel');
+      ref?.click();
+      this.formValue.reset();
+      this.getAllDocente();
+    },
+    err => {
+      alert("Intente de nuevo");
+    });
+}
+getAllDocente() {
+  this.api.getDocente()
+    .subscribe(res => {
+      this.docenteData = res;
+    });
+}
+
+deleteDocente(row: any) {
+  this.api.deleteDocente(row.id)
+    .subscribe(res => {
+      alert("Docente Eliminado");
+      this.getAllDocente();
+    });
+}
+
+onEdit(row: any) {
+  this.showAdd = false;
+  this.showUpdate = true;
+  this.docenteModelObj.id = row.id;
+  this.formValue.controls['nombre'].setValue(row.nombre);
+  this.formValue.controls['foto'].setValue(row.foto);
+  this.formValue.controls['carrera'].setValue(row.carrera);
+  this.formValue.controls['universidad'].setValue(row.universidad);
+  this.formValue.controls['anoGraduacion'].setValue(row.anoGraduacion);
+  this.formValue.controls['empleoActual'].setValue(row.empleoActual);
+  this.formValue.controls['tiempoSinTrabajo'].setValue(row.tiempoSinTrabajo); 
   
-    // Agregar la navegación a la página de asistencias con parámetros
-    this.router.navigate(['/asistencias'], {
-      queryParams: {
-        docente: row.docente,
-        asignatura: row.curso // o asignatura, según lo que necesites
-      }
-    });
-  }
-  updateDocenteDetails() {
-    this.docenteModelObj.docente = this.formValue.value.docente;
-    this.docenteModelObj.cedula = this.formValue.value.cedula;
-    this.docenteModelObj.codigo = this.formValue.value.codigo;
-    this.docenteModelObj.asignatura = this.formValue.value.asignatura;
-    this.docenteModelObj.curso = this.formValue.value.curso;
-    this.docenteModelObj.horario = this.formValue.value.horario;
-    this.docenteModelObj.aula = this.formValue.value.aula;
+}
 
-    this.api.updateDocente(this.docenteModelObj, this.docenteModelObj.id)
-      .subscribe(res => {
-        alert("Actualizado correcto");
-        let ref = document.getElementById('cancel');
-        ref?.click();
-        this.formValue.reset();
-        this.getAllDocente();
-      });
-  }
+
+onEdite(row: any) {
+  this.showAdd = false;
+  this.showUpdate = true;
+  this.docenteModelObj.id = row.id;
+  this.formValue.controls['nombre'].setValue(row.nombre);
+  this.formValue.controls['foto'].setValue(row.foto);
+  this.formValue.controls['carrera'].setValue(row.carrera);
+  this.formValue.controls['universidad'].setValue(row.universidad);
+  this.formValue.controls['anoGraduacion'].setValue(row.anoGraduacion);
+  this.formValue.controls['empleoActual'].setValue(row.empleoActual);
+  this.formValue.controls['tiempoSinTrabajo'].setValue(row.tiempoSinTrabajo); 
+
+}
+updateDocenteDetails() {
+  this.docenteModelObj.nombre = this.formValue.value.nombre;
+  this.docenteModelObj.foto = this.formValue.value.foto;
+  this.docenteModelObj.carrera = this.formValue.value.carrera;
+  this.docenteModelObj.universidad = this.formValue.value.universidad;
+  this.docenteModelObj.anoGraduacion = this.formValue.value.anoGraduacion;
+  this.docenteModelObj.empleoActual = this.formValue.value.empleoActual;
+  this.docenteModelObj.tiempoSinTrabajo = this.formValue.value.tiempoSinTrabajo;
+
+  this.api.updateDocente(this.docenteModelObj, this.docenteModelObj.id)
+  .subscribe(res => {
+    alert("Actualizado correcto");
+    let ref = document.getElementById('cancel');
+    ref?.click();
+    this.formValue.reset();
+    this.getAllDocente();
+  });
+}
 }

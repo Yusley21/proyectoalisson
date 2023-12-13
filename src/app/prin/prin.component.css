@@ -1,0 +1,93 @@
+/* nombre-del-componente.component.css */
+
+body {
+    margin: 0;
+  }
+  
+  .logo2 {
+    max-height: 2000px; /* Puedes ajustar este valor según tus necesidades */
+    overflow: hidden;
+    text-align: center;
+}
+
+.logo2 img {
+    width: 70%;
+    height: auto;
+}
+  
+  .menu {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+  }
+  
+  .menu button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+  
+  .menu button:hover {
+    background-color: #45a049;
+  }
+  
+  footer{
+	background-color: #232325;
+	padding-top: 12px;
+	align-items: center;
+	justify-content:center;
+	flex-direction:column;
+	text-align: center;
+	margin-top: auto;
+}
+  
+.footer-logo {
+    text-align: center;
+    background-color: #232325;
+    padding: 10px;
+}
+
+.footer-logo img {
+    max-height: 100px; /* Ajusta este valor según tus necesidades */
+    width: auto;
+}
+
+.navv {
+    color: #fff; /* Color del texto en el navv */
+}
+
+.social-media {
+    margin-top: 20px;
+}
+
+.social-media h3 {
+    color: #fff;
+}
+
+.social-media ul {
+    list-style: none;
+    padding: 0;
+}
+
+.social-media li {
+    margin: 10px 0;
+}
+
+.social-media a {
+    color: #4CAF50;
+    text-decoration: none;
+}
+
+.social-media a:hover {
+    color: #45a049;
+}

@@ -10,6 +10,8 @@ import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
 import { PrincipalComponent } from './principal/principal.component';
 import { AsistenciasComponent } from './asistencias/asistencias.component';
+import { PrinComponent } from './prin/prin.component';
+import { GaleriaComponent } from './galeria/galeria.component';
 
 
 @NgModule({
@@ -19,12 +21,15 @@ import { AsistenciasComponent } from './asistencias/asistencias.component';
     LoginComponent,
     SignupComponent,
     PrincipalComponent,
-    AsistenciasComponent
+    AsistenciasComponent,
+    PrinComponent,
+    GaleriaComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
+    
     HttpClientModule
 
     

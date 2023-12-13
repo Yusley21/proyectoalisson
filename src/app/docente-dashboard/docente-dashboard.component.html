@@ -1,97 +1,138 @@
 <nav class="navbar navbar-ligth bg-primary">
-    <div class="container-fluid">
-        <h1 style="color: rgb(40, 122, 194);">DOCENTE</h1>
-        <div class="d-flex">
-            <button (click)= "clickAddDocente()" type= "button" data-bs-toggle="modal" data-bs-target="#exampleModal" class="btn btn-success">Agregar Docente</button>
-            <button routerLink="/login" class="btn btn-danger mx-2">Cerrar Sesion</button>
-        </div>
-    </div>
+  <div class="container-fluid">
+      <h1 style="color: rgb(160, 246, 167);">Software para graduados de la Uleam</h1>
+      <div class="d-flex">
+          <button (click)= "clickAddDocente()" type= "button" data-bs-toggle="modal" data-bs-target="#exampleModal" class="btn btn-success">Agregar Estudiante</button>
+          <button routerLink="/principal" class="btn btn-danger mx-2">Cerrar Sesion</button>
+      </div>
+  </div>
 </nav>
 
-<table class="table mt-3">
-    <thead>
-        <tr>
-            <th scope="col">iD docente</th>
-            <th scope="col">Nombre del docente</th>
-            <th scope="col">Número de identificación</th>
-            <th scope="col">Número de empleado o código asignado</th>
-            <th scope="col">Nombre del curso o asignatura</th>
-            <th scope="col">Código del curso</th>
-            <th scope="col">Horario de clases</th>
-            <th scope="col">Aula o salón asignado</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr *ngFor= "let row of docenteData">
-            <td>{{row.id}}</td>
-            <td>{{row.docente}}</td>
-            <td>{{row.cedula}}</td>
-            <td>{{row.codigo}}</td>
-            <td>{{row.asignatura}}</td>
-            <td>{{row.curso}}</td>
-            <td>{{row.horario}}</td>
-            <td>{{row.aula}}</td>
-            <td>
-                <button (click)= "onEdit(row)" style="color: aliceblue;" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" class="btn btn-info">Editar</button>
-                <button (click)= "deleteDocente(row)" class="btn btn-danger mx-3">Eliminar</button>
-                <button (click)= "onEdite(row)" routerLink="/asistencias" class="btn btn-success">Asistencias</button>
-            </td>
-        </tr>
-    </tbody>
+
+<table class="table mt-3 table-bordered table-hover">
+  <thead class="table-primary">
+    <tr>
+      <th scope="col">ID estudiante</th>
+      <th scope="col">Nombre del graduado</th>
+      <th scope="col">Foto</th>
+      <th scope="col">Carrera</th>
+      <th scope="col">Universidad</th>
+      <th scope="col">Año de graduacion</th>
+      <th scope="col">Empleo Actual</th>
+      <th scope="col">Tiempo sin trabajo</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor= "let row of docenteData">
+      <td>{{row.id}}</td>
+      <td>{{row.nombre}}</td>
+      <td><img [src]="row.foto" alt="Foto" class="img-thumbnail" style="max-height: 450px;"></td>
+      <td>{{row.carrera}}</td>
+      <td>{{row.universidad}}</td>
+      <td>{{row.anoGraduacion}}</td>
+      <td>{{row.empleoActual}}</td>
+      <td>{{row.tiempoSinTrabajo}}</td>
+      <td>
+      <button (click)= "onEdit(row)" style="color: aliceblue;" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" class="btn btn-info btn-sm">Editar</button>
+      <button (click)= "deleteDocente(row)" class="btn btn-danger btn-sm mx-1">Eliminar</button>
+     </td>
+ 
+    </tr>
+  </tbody>
 </table>
 
   <!-- Modal -->
-  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Información del Docente</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-            <form [formGroup]= "formValue">
-                <div class="mb-3">
-                  <label for="exampleInputEmail1" class="form-label">Nombre del Docente</label>
-                  <input type="text" formControlName="docente" class="form-control" id="exampleInputEmail1" >
-                </div>
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Información del Estudiante</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]= "formValue">
+            <div class="mb-3">
+              <label for="nombre" class="form-label">Nombre del Estudiante</label>
+              <input type="text" formControlName="nombre" class="form-control" id="nombre">
+            </div>
 
-                <div class="mb-3">
-                  <label for="exampleInputPassword1" class="form-label">Número de identificación</label>
-                  <input type="text" formControlName="cedula" class="form-control" id="exampleInputPassword1">
-                </div>
-                
-                <div class="mb-3">
-                    <label for="exampleInputPassword1" class="form-label">Número de empleado o código asignado</label>
-                    <input type="text" formControlName="codigo" class="form-control"  id="exampleInputPassword1">
-                  </div>
+            <div class="mb-3">
+              <label for="foto" class="form-label">Subir Foto del Estudiante</label>
+              <input type="file" (change)="onFileSelected($event)" class="form-control" id="foto" accept="image/*">
+            </div>
+            
+            <div class="mb-3">
+              <label for="preview" class="form-label">Vista previa de la Foto</label>
+              <img [src]="formValue.value.foto" alt="Vista previa de la foto" id="preview" class="img-thumbnail" *ngIf="formValue.value.foto">
+            </div>
+            
+            
 
-                  <div class="mb-3">
-                    <label for="exampleInputEmail1" class="form-label">Nombre del curso o asignatura</label>
-                    <input type="text" formControlName="asignatura" class="form-control" id="exampleInputEmail1" >
-                  </div>
+            <div class="mb-3">
+              <label for="carrera" class="form-label">Carrera</label>
+              <input type="text" formControlName="carrera" class="form-control" id="carrera">
+            </div>
 
-                  <div class="mb-3">
-                    <label for="exampleInputPassword1" class="form-label">Código del curso</label>
-                    <input type="text" formControlName="curso" class="form-control" id="exampleInputPassword1">
-                  </div>
+            <div class="mb-3">
+              <label for="Universidad" class="form-label">Universidad</label>
+              <select formControlName="universidad" class="form-control" id="Universidad">
+                <option value="Universidad Laica Eloy Alfaro de Manabi (Matriz)">Universidad Laica Eloy Alfaro de Manabi (Matriz)</option>
+                <option value="Universidad Laica Eloy Alfaro de Manabi (Extensión Chone)">Universidad Laica Eloy Alfaro de Manabi (Extensión Chone)</option>
+                <option value="Universidad Laica Eloy Alfaro de Manabi (Extensión Bahía)">Universidad Laica Eloy Alfaro de Manabi (Extensión Bahía)</option>
+                <option value="Universidad Laica Eloy Alfaro de Manabi (Extensión El Carmen)">Universidad Laica Eloy Alfaro de Manabi (Extensión El Carmen)</option>
+                <option value="Universidad Laica Eloy Alfaro de Manabi (Campus Pedernales)">Universidad Laica Eloy Alfaro de Manabi (Campus Pedernales)</option>
+              </select>
+            </div>
 
-                  <div class="mb-3">
-                    <label for="exampleInputEmail1" class="form-label">Horario de clases</label>
-                    <input type="text" formControlName="horario" class="form-control" id="exampleInputEmail1" >
-                  </div>
+            <div class="mb-3">
+              <label for="exampleInputEmail1" class="form-label">Año de Graduacion</label>
+              <input type="date" formControlName="anoGraduacion" class="form-control" id="anoGraduacion">
+            </div>
 
-                  <div class="mb-3">
-                    <label for="exampleInputEmail1" class="form-label">Aula o salón asignado</label>
-                    <input type="text" formControlName="aula" class="form-control" id="exampleInputEmail1" >
-                  </div>
-              </form>
-        </div>
-        <div class="modal-footer">
-          <button type="button" id="cancel" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-          <button type="button" *ngIf= "showAdd" (click)= "postDocenteDetails()" class="btn btn-primary">Agregar</button>
-          <button type="button" *ngIf= "showUpdate" (click)= "updateDocenteDetails()" class="btn btn-primary">Actualizar</button>
-        </div>
-        
+            <div class="mb-3">
+              <label for="empleoActual" class="form-label">Empleo Actual</label>
+              <input type="text" formControlName="empleoActual" class="form-control" id="empleoActual">
+            </div>
+
+            <div class="mb-3">
+              <label for="tiempoSinTrabajo" class="form-label">Tiempo sin trabajo (en meses)</label>
+              <select formControlName="tiempoSinTrabajo" class="form-select" id="tiempoSinTrabajo">
+                <option value="1 mes">1 mes</option>
+                <option value="2 meses">2 meses</option>
+                <option value="3 meses">3 meses</option>
+                <option value="4 meses">4 meses</option>
+                <option value="5 meses">5 meses</option>
+                <option value="6 meses">6 meses</option>
+                <option value="7 meses">7 meses</option>
+                <option value="8 meses">8 meses</option>
+                <option value="9 meses">9 meses</option>
+                <option value="10 meses">10 meses</option>
+                <option value="11 meses">11 meses</option>
+                <option value="1 año o más">1 año o más</option>
+
+              </select>
+            </div>
+            </form>
+          </div>
+      <div class="modal-footer">
+        <button type="button" id="cancel" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+        <button type="button" *ngIf= "showAdd" (click)= "postDocenteDetails()" class="btn btn-primary">Agregar</button>
+        <button type="button" *ngIf= "showUpdate" (click)= "updateDocenteDetails()" class="btn btn-primary">Actualizar</button>
       </div>
     </div>
+    
   </div>
+</div>
+
+<footer>
+  <div class="footer-logo">
+        <img src="https://cec.uleam.edu.ec/pluginfile.php/1/theme_klass/footerlogo/1678886773/logo_ULEAM_2017_horizontal.png" alt="ima">
+    </div>
+
+
+    <nav class="navv">
+        <a href="#"><pre>ULEAM @ Copyright 2022, Todos los derechos reservados - Universidad Laica Eloy Alfaro de Manabí</pre></a>
+        <a href="#"><pre>Dirección: Av. Circunvalación - Vía a San Mateo</pre></a>
+        <a href="#"><pre>Manta - Manabí - Ecuador</pre></a>
+    </nav>
+</footer>

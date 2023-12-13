@@ -1,0 +1,45 @@
+/* Estilos para las tarjetas de estudiante */
+.estudiante-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    border: 1px solid #be3434; /* Borde de 1 píxel con color gris claro */
+    padding: 15px; /* Ajusta el espacio interno según sea necesario */
+    margin-bottom: 20px;
+    background-color: #f2e9ef;
+  }
+  
+  /* Estilos adicionales para mejorar la apariencia */
+  .foto img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 50%;
+  }
+  
+  .informacion {
+    margin-top: 10px;
+  }
+  
+  .informacion h3 {
+    color: #333;
+  }
+  
+  .informacion p {
+    margin: 5px 0;
+    color: #555;
+  }
+  /* Estilos para centrar el título */
+h2 {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  /* Estilos para centrar el título */
+h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+  
+  /* Añade más estilos según sea necesario */
+  

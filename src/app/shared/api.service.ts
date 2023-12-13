@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpClientModule} from '@angular/common/http'
+import { HttpClient, HttpClientModule} from '@angular/common/http';
 import {map} from 'rxjs/operators'
 
 @Injectable({
@@ -10,28 +10,28 @@ export class ApiService {
   constructor(private http : HttpClient) { }
 
   postDocente(data : any){
-    return this.http.post<any>("http://localhost:3000/posts", data)
+    return this.http.post<any>("http://localhost:3000/datas", data)
     .pipe(map((res:any)=>{
       return res;
     }))
   }
 
   getDocente(){
-    return this.http.get<any>("http://localhost:3000/posts")
+    return this.http.get<any>("http://localhost:3000/datas")
     .pipe(map((res:any)=>{
       return res;
     }))
   }
 
   updateDocente(data : any,id: number){
-    return this.http.put<any>("http://localhost:3000/posts/"+id,data)
+    return this.http.put<any>("http://localhost:3000/datas/"+id,data)
     .pipe(map((res:any)=>{
       return res;
     }))
   }
 
   deleteDocente(id : number){
-    return this.http.delete<any>("http://localhost:3000/posts/"+id)
+    return this.http.delete<any>("http://localhost:3000/datas/"+id)
     .pipe(map((res:any)=>{
       return res;
     }))
@@ -54,6 +54,9 @@ export class ApiService {
     }))
   }
 
+  
+  
+
   updateAsistencias(data : any,id: number){
     return this.http.put<any>("http://localhost:3000/studu/"+id,data)
     .pipe(map((res:any)=>{
@@ -67,4 +70,5 @@ export class ApiService {
       return res;
     }))
   }
+  
 }

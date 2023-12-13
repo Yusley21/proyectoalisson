@@ -1,88 +1,85 @@
 <nav class="navbar navbar-light bg-primary">
-  <div class="container-fluid">
-    <h1 style="color: rgb(40, 122, 194);">ESTUDIANTES</h1>
-    <div class="d-flex">
-      <button (click)="clickAddAsistencias()" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal"
-        class="btn btn-success">Agregar Estudiante</button>
-      <button routerLink="/login" class="btn btn-danger mx-2">Cerrar Sesion</button>
-    </div>
+   <div class="container-fluid">
+     <h1 style="color: rgb(40, 122, 194);">ESTUDIANTES</h1>
+   <div class="d-flex">
+       <button (click)="clickAddAsistencias()" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal"
+  class="btn btn-success">Agregar Estudiante</button>
+  <button routerLink="/login" class="btn btn-danger mx-2">Cerrar Sesion</button>
   </div>
-</nav>
-<!-- Encabezado -->
-<div class="encabezado">
+  </div>
+ </nav>
+ <!-- Encabezado -->
+ <div class="encabezado">
   <h2>Información de Asistencias</h2>
   <p *ngIf="docenteNombre">Docente: {{ docenteNombre }}</p>
   <p *ngIf="asignaturaNombre">Curso o Asignatura: {{ asignaturaNombre }}</p>
-</div>
-
-<table class="table mt-3">
+ </div>
+ <table class="table mt-3">
   <thead>
-    <tr>
-      <th scope="col">ID estudiante</th>
-      <th scope="col">Nombre del estudiante</th>
-      <th scope="col">Número de identificación</th>
-      <th scope="col">Correo Electronico</th>
-      <th scope="col">Asistencia</th>
-    </tr>
+  <tr>
+  <th scope="col">ID estudiante</th>
+  <th scope="col">Nombre del estudiante</th>
+  <th scope="col">Número de identificación</th>
+  <th scope="col">Correo Electronico</th>
+  <th scope="col">Asistencia</th>
+  </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let row of asistenciasData">
-      <td>{{ row.id }}</td>
-      <td>{{ row.estudiantes }}</td>
-      <td>{{ row.cedula }}</td>
-      <td>{{ row.correo }}</td>
-      <td>
-        <!-- Use [checked] to bind to the boolean value in your data -->
-        <input type="checkbox" [checked]="row.asistencia" disabled>
-      </td>
-      <td>
-        <button (click)="onEdit(row)" style="color: aliceblue;" type="button" data-bs-toggle="modal"
-          data-bs-target="#exampleModal" class="btn btn-info">Editar</button>
-        <button (click)="deleteAsistencias(row)" class="btn btn-danger mx-3">Eliminar</button>
-      </td>
-    </tr>
+  <tr *ngFor="let row of asistenciasData">
+  <td>{{ row.id }}</td>
+  <td>{{ row.estudiantes }}</td>
+  <td>{{ row.cedula }}</td>
+  <td>{{ row.correo }}</td>
+  <td>
+  <!-- Use [checked] to bind to the boolean value in your data -->
+  <input type="checkbox" [checked]="row.asistencia" disabled>
+  </td>
+  <td>
+  <button (click)="onEdit(row)" style="color: aliceblue;" type="button" data-bs-toggle="modal"
+  data-bs-target="#exampleModal" class="btn btn-info">Editar</button>
+  <button (click)="deleteAsistencias(row)" class="btn btn-danger mx-3">Eliminar</button>
+  </td>
+  </tr>
   </tbody>
-</table>
-
-<!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+ </table>
+ <!-- Modal -->
+ <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Información del Estudiante</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <form [formGroup]="formValue">
-          <div class="mb-3">
-            <label for="exampleInputEmail1" class="form-label">Nombre del Estudiante</label>
-            <input type="text" formControlName="estudiantes" class="form-control" id="exampleInputEmail1">
-          </div>
-
-          <div class="mb-3">
-            <label for="exampleInputPassword1" class="form-label">Número de identificación</label>
-            <input type="text" formControlName="cedula" class="form-control" id="exampleInputPassword1">
-          </div>
-
-          <div class="mb-3">
-            <label for="exampleInputPassword1" class="form-label">Correo Electronico</label>
-            <input type="text" formControlName="correo" class="form-control" id="exampleInputPassword1">
-          </div>
-
-          <div class="mb-3 form-check">
-            <!-- Use formControlName to bind to the 'asistencia' property in your form -->
-            <input type="checkbox" formControlName="asistencia" class="form-check-input" id="exampleCheck1">
-            <label class="form-check-label" for="exampleCheck1">Asistencia</label>
-          </div>
-        </form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" id="cancel" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-        <button type="button" *ngIf="showAdd" (click)="postAsistenciasDetails()" class="btn btn-primary">Agregar</button>
-        <button type="button" *ngIf="showUpdate" (click)="updateAsistenciasDetails()" class="btn btn-primary">Actualizar</button>
-      </div>
-    </div>
+  <div class="modal-content">
+  <div class="modal-header">
+  <h5 class="modal-title" id="exampleModalLabel">Información del Estudiante</h5>
+  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
   </div>
-</div>
-
-  
+  <div class="modal-body">
+  <form [formGroup]="formValue">
+  <div class="mb-3">
+  <label for="exampleInputEmail1" class="form-label">Nombre del Estudiante</label>
+  <input type="text" formControlName="estudiantes" class="form-control" 
+ id="exampleInputEmail1">
+  </div>
+  <div class="mb-3">
+  <label for="exampleInputPassword1" class="form-label">Número de identificación</label>
+  <input type="text" formControlName="cedula" class="form-control" 
+ id="exampleInputPassword1">
+  </div>
+  <div class="mb-3">
+  <label for="exampleInputPassword1" class="form-label">Correo Electronico</label>
+  <input type="text" formControlName="correo" class="form-control" 
+ id="exampleInputPassword1">
+  </div>
+  <div class="mb-3 form-check">
+  <!-- Use formControlName to bind to the 'asistencia' property in your form -->
+  <input type="checkbox" formControlName="asistencia" class="form-check-input" 
+ id="exampleCheck1">
+  <label class="form-check-label" for="exampleCheck1">Asistencia</label>
+  </div>
+  </form>
+  </div>
+  <div class="modal-footer">
+  <button type="button" id="cancel" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+  <button type="button" *ngIf="showAdd" (click)="postAsistenciasDetails()" class="btn btn-primary">Agregar</button>
+  <button type="button" *ngIf="showUpdate" (click)="updateAsistenciasDetails()" class="btn btn-primary">Actualizar</button>
+  </div>
+  </div>
+  </div>
+ </div>

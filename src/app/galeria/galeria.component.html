@@ -1,0 +1,18 @@
+<h2>Galería de Estudiantes Graduados</h2>
+
+<div *ngFor="let estudiante of docenteData">
+  <div class="estudiante-card">
+    <div class="foto">
+      <img [src]="estudiante.foto" alt="Foto de {{ estudiante.nombre }}">
+    </div>
+    <div class="informacion">
+      <h3>{{ estudiante.nombre }}</h3>
+      <p><strong>Carrera:</strong> {{ estudiante.carrera }}</p>
+      <p><strong>Universidad:</strong> {{ estudiante.universidad }}</p>
+      <p><strong>Año de Graduación:</strong> {{ estudiante.anoGraduacion }}</p>
+      <p><strong>Empleo Actual:</strong> {{ estudiante.empleoActual }}</p>
+      <p><strong>Tiempo sin Trabajo:</strong> {{ estudiante.tiempoSinTrabajo }}</p>
+      <!-- Agrega más campos según sea necesario -->
+    </div>
+  </div>
+</div>

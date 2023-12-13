@@ -29,7 +29,7 @@ export class LoginComponent implements OnInit {
       if(user){
         alert("Usuario Correcto");
         this.loginForm.reset();
-        this.router.navigate(['dashboard'])
+        this.router.navigate(['prin'])
       }else{
         alert("usuario o contraseña incorrecto");
       }

@@ -1,10 +1,13 @@
-export class DocenteModel{
+// En algún archivo graduado.model.ts
+export class DocenteModel {
     id: number = 0;
-    docente: string ='';
-    cedula: string ='';
-    codigo: string ='';
-    asignatura: string ='';
-    curso: string ='';
-    horario: string ='';
-    aula: string ='';
-}
+    nombre: string = '';
+    foto: File | null = null;
+    carrera: string = '';
+    universidad: string = '';
+    anoGraduacion: Date | null = null;
+    empleoActual: string = '';
+    tiempoSinTrabajo: string = '';
+  }
+  
+  
